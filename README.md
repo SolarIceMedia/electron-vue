@@ -22,6 +22,11 @@ The boilerplate for making electron applications built with vue (pretty much wha
 </div>
 
 ## Overview
+This version of the forked repo has been fixed and updated to work with Node v12.19 and Electron 10.1.5
+
+`NOTE` This version does `NOT` use any of the hacks you may find on the internet about fixing the original one. Those are not
+fixes they are "hacks" this one actually fixes the issue with webpack and brings the vue application contained inside it up to date
+with the newer versions of Electron
 
 The aim of this project is to remove the need of manually setting up electron apps using vue. electron-vue takes advantage of `vue-cli` for scaffolding, `webpack` with `vue-loader`, `electron-packager` or `electron-builder`, and some of the most used plugins like `vue-router`, `vuex`, and so much more.
 
@@ -51,12 +56,12 @@ Things you'll find in this boilerplate...
 
 ### Getting Started
 
-This boilerplate was built as a template for [vue-cli](https://github.com/vuejs/vue-cli) and includes options to customize your final scaffolded app. The use of `node@^7` or higher required. electron-vue also officially recommends the [`yarn`](https://yarnpkg.org) package manager as it handles dependencies much better and can help reduce final build size with `yarn clean`.
+This boilerplate was built as a template for [vue-cli](https://github.com/vuejs/vue-cli) and includes options to customize your final scaffolded app. The use of `node@^12` or higher required. electron-vue also officially recommends the [`yarn`](https://yarnpkg.org) package manager as it handles dependencies much better and can help reduce final build size with `yarn clean`.
 
 ```bash
 # Install vue-cli and scaffold boilerplate
 npm install -g vue-cli
-vue init simulatedgreg/electron-vue my-project
+vue init solarice-media/electron-vue my-project
 
 # Install dependencies and run your app
 cd my-project
@@ -67,14 +72,6 @@ yarn run dev # or npm run dev
 ##### Are you a Windows User?
 
 Make sure to check out [**A Note for Windows Users**](https://simulatedgreg.gitbooks.io/electron-vue/content/en/getting_started.html#a-note-for-windows-users) to make sure you have all the necessary build tools needed for electron and other dependencies.
-
-##### Wanting to use Vue 1?
-
-Just point to the `1.0` branch. Please note that electron-vue has officially deprecated the usage of `vue@^1`, so project structure, features, and documentation will reflect those changes ([**legacy documentation**](https://github.com/SimulatedGREG/electron-vue/tree/1.0/docs)).
-
-```bash
-vue init simulatedgreg/electron-vue#1.0 my-project
-```
 
 ### Next Steps
 
