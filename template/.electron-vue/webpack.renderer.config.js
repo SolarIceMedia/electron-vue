@@ -31,7 +31,6 @@ let rendererConfig = {
   ],
   module: {
     rules: [
-{{#if eslint}}
       {
         test: /\.(js|vue)$/,
         enforce: 'pre',
@@ -43,8 +42,6 @@ let rendererConfig = {
           }
         }
       },
-{{/if}}
-    {{#if usesass}}
       {
         test: /\.scss$/,
         use: ['vue-style-loader', 'css-loader', 'sass-loader']
@@ -53,7 +50,6 @@ let rendererConfig = {
         test: /\.sass$/,
         use: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
       },
-    {{/if}}
       {
         test: /\.less$/,
         use: ['vue-style-loader', 'css-loader', 'less-loader']
@@ -129,6 +125,18 @@ let rendererConfig = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../src/index.ejs'),
+      templateParameters(compilation, assets, options) {
+        return {
+          compilation: compilation,
+          webpack: compilation.getStats().toJson(),
+          webpackConfig: compilation.options,
+          htmlWebpackPlugin: {
+            files: assets,
+            options: options
+          },
+          process,
+        };
+      },
       minify: {
         collapseWhitespace: true,
         removeAttributeQuotes: true,

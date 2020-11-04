@@ -1,15 +1,13 @@
-{{#if_eq eslintConfig 'standard'}}
 'use strict'
 
-{{/if_eq}}
-import { app, BrowserWindow } from 'electron'{{#if_eq eslintConfig 'airbnb'}} // eslint-disable-line{{/if_eq}}
+import { app, BrowserWindow } from 'electron'
 
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
 if (process.env.NODE_ENV !== 'development') {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\'){{#if_eq eslintConfig 'airbnb'}} // eslint-disable-line{{/if_eq}}
+  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
 }
 
 let mainWindow
@@ -24,7 +22,11 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: 563,
     useContentSize: true,
-    width: 1000
+    width: 1000,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true
+    }
   })
 
   mainWindow.loadURL(winURL)
@@ -47,7 +49,6 @@ app.on('activate', () => {
     createWindow()
   }
 })
-{{#if_eq builder 'builder'}}
 
 /**
  * Auto Updater
@@ -68,4 +69,3 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
  */
-{{/if_eq}}
